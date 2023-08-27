@@ -8,8 +8,8 @@ import { Usuario } from '../models/usuarioModel';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/usuario'; //en el back crear el registro
-
-  constructor(private http: HttpClient) {}
+  private login = 'http://localhost:3000/usuario/login';//paso 1url del login
+  constructor(private http: HttpClient) { }
 
   registrarUsuario(usuario: Usuario): Observable<any> {
     return this.http.post(this.apiUrl, usuario);
@@ -17,5 +17,9 @@ export class AuthService {
 
   obtenerUsuarioAutenticado() {
     //agregar lógica
+  }
+  //paso 2 agregar un post para el login
+  loginUsuarioAutentication(login: any): Observable<any> {
+    return this.http.post<any>(this.login, login);
   }
 }
